@@ -1,0 +1,34 @@
+package combinatorpattern;
+
+import java.nio.file.LinkOption;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.IllformedLocaleException;
+import java.util.concurrent.Callable;
+
+import static combinatorpattern.CustomerRegistrationValidator.*;
+import static combinatorpattern.CustomerRegistrationValidator.ValidationResult.SUCCESS;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        
+        Customer customer= new Customer(
+                "John",
+                "jonh@gmail.com",
+                "0345346546",
+                LocalDate.of(2000,Month.OCTOBER,22)
+        );
+        
+        
+        ValidationResult result = isEmailValid()
+                .and(isPhoneNumberValid())
+                .and(isAdult())
+                .apply(customer);
+        
+        System.out.println(result);
+
+ }
+}
